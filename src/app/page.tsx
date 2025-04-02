@@ -61,23 +61,23 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center mb-8">Note Generator</h1>
+    <main className="min-h-screen p-8">
+      <div className="container mx-auto max-w-4xl">
+        <h1 className="text-4xl font-bold text-center mb-8 text-foreground">Note Generator</h1>
         
         {!generatedArticle ? (
           <BlogIdeaForm onSubmit={handleSubmit} />
         ) : (
-          <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
+          <div className="bg-card text-card-foreground rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold mb-4">{generatedArticle.title}</h2>
             
-            <div className="prose max-w-none mb-6">
+            <div className="prose max-w-none mb-6 text-foreground">
               <div dangerouslySetInnerHTML={{ __html: generatedArticle.content.replace(/\n/g, '<br/>') }} />
             </div>
             
             <div className="flex flex-wrap gap-2 mb-6">
               {generatedArticle.tags.map((tag, index) => (
-                <span key={index} className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                <span key={index} className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm">
                   {tag}
                 </span>
               ))}
@@ -86,14 +86,14 @@ export default function Home() {
             <div className="flex justify-between">
               <button
                 onClick={() => setGeneratedArticle(null)}
-                className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600"
+                className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/80"
               >
                 戻る
               </button>
               
               <button
                 onClick={handlePublishToNote}
-                className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
               >
                 noteに下書き投稿
               </button>
@@ -102,18 +102,18 @@ export default function Home() {
         )}
         
         {isGenerating && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg">
+          <div className="fixed inset-0 bg-background/50 backdrop-blur-sm flex items-center justify-center z-50">
+            <div className="bg-card text-card-foreground p-6 rounded-lg shadow-lg">
               <p className="text-lg">AIが記事を生成中です...</p>
-              <div className="mt-4 w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div className="animate-pulse h-full bg-blue-500 rounded-full"></div>
+              <div className="mt-4 w-full h-2 bg-secondary rounded-full overflow-hidden">
+                <div className="animate-pulse h-full bg-primary rounded-full"></div>
               </div>
             </div>
           </div>
         )}
         
         {error && (
-          <div className="w-full max-w-4xl mx-auto mt-4 p-4 bg-red-100 text-red-700 rounded-md">
+          <div className="w-full max-w-4xl mx-auto mt-4 p-4 bg-destructive/10 text-destructive rounded-md">
             {error}
           </div>
         )}
