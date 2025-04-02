@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_GEMINI_API_KEY": "@gemini-api-key",
+    "NOTE_EMAIL": "@note-email",
+    "NOTE_PASSWORD": "@note-password"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_GEMINI_API_KEY": "@gemini-api-key"
+    }
+  }
+}
